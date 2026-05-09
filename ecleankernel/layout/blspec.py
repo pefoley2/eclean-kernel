@@ -127,8 +127,9 @@ class BlSpecLayout(ModuleDirLayout):
                         self.name_map.get(fn, KernelFileType.MISC),
                         dir_path / fn,
                         k, ver, module_dict, exclusions)
-                kernels[(ver, "bls")].all_files.append(
-                    EmptyDirectory(dir_path))
+                if (ver, "bls") in kernels:
+                    kernels[(ver, "bls")].all_files.append(
+                        EmptyDirectory(dir_path))
 
         # collect from ESP/Linux
         if self.ukidir.is_dir():
